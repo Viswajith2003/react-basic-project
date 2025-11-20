@@ -37,7 +37,7 @@ export default function ContactCard(props) {
         <div style={{ fontSize: "0.95em", color: "#555" }}>{email}</div>
       </div>
       <i
-        className="trash alternate outline icon"
+        className="trash alternate icon"
         style={{
           color: "#e53935",
           fontSize: "1.5em",

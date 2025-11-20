@@ -33,8 +33,9 @@ function App() {
 
   return (
     <div>
-      <Header />
+      <Header name="Contact Manager" />
       <AddContact addContactHandler={addContactHandler} />
+      
       <ContactLists contacts={contacts} getContactId={removeContactHandler} />
     </div>
   );
