@@ -1,17 +1,26 @@
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 
-export default function AddContact({ addContactHandler }) {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
+export default function EditContact({ updateContactHandler }) {
+  const location = useLocation();  //access navigation state
   const navigate = useNavigate();
 
-  const add = (e) => {
+  // Get contact data from location state
+  const { contact } = location.state || {};
+
+  // Initialize with existing contact data
+  const [name, setName] = useState(contact?.name || "");
+  const [email, setEmail] = useState(contact?.email || "");
+
+  const edit = (e) => {
     e.preventDefault();
     if (name === "" || email === "") {
       return alert("All the fields are mandatory!");
     }
-    addContactHandler({ name, email });
+
+    // Include the contact ID when updating
+    updateContactHandler({ id: contact.id, name, email });
+
     setName("");
     setEmail("");
     navigate("/");
@@ -27,7 +36,7 @@ export default function AddContact({ addContactHandler }) {
         }}
       >
         <h2 className="ui center aligned header" style={{ marginLeft: "20px" }}>
-          Add Contact
+          Edit Contact
         </h2>
         <Link to="/">
           <button
@@ -44,7 +53,7 @@ export default function AddContact({ addContactHandler }) {
           </button>
         </Link>
       </div>
-      <form className="ui form container" onSubmit={add}>
+      <form className="ui form container" onSubmit={edit}>
         <div className="field">
           <label>Name</label>
           <input
@@ -66,7 +75,9 @@ export default function AddContact({ addContactHandler }) {
           />
         </div>
         <div className="ui center aligned header">
-          <button className="ui button blue">Add</button>
+          <button className="ui button blue" onClick={edit}>
+            Update
+          </button>
         </div>
       </form>
     </div>

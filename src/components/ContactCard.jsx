@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 export default function ContactCard(props) {
   const { name, email, id } = props.contact;
@@ -28,14 +29,29 @@ export default function ContactCard(props) {
         }}
       ></i>
       <div className="content" style={{ flex: 1 }}>
-        <div
-          className="header"
-          style={{ fontSize: "1.1em", fontWeight: "bold" }}
-        >
-          {name}
-        </div>
-        <div style={{ fontSize: "0.95em", color: "#555" }}>{email}</div>
+        <Link to={`/contact-details/${id}`} state={{ contact: props.contact }}>
+          <div
+            className="header"
+            style={{ fontSize: "1.1em", fontWeight: "bold" }}
+          >
+            {name}
+          </div>
+          <div style={{ fontSize: "0.95em", color: "#555" }}>{email}</div>
+        </Link>
       </div>
+      <Link to="/edit" state={{ contact: props.contact }}>
+        <i
+          className="edit alternate icon"
+          style={{
+            color: "blue",
+            fontSize: "1.5em",
+            cursor: "pointer",
+            transition: "color 0.2s",
+          }}
+          onMouseOver={(e) => (e.currentTarget.style.color = "#4f7ed9")}
+          onMouseOut={(e) => (e.currentTarget.style.color = "#2196f3")}
+        ></i>
+      </Link>
       <i
         className="trash alternate icon"
         style={{
