@@ -6,7 +6,10 @@ export default function ContactLists(props) {
   // console.log(props);
   const inputEle = useRef("");
   const deleteContactHandler = (id) => {
-    props.getContactId(id);
+    const confirmDelete=window.confirm("Do you want to delete this contact ?")
+    if(confirmDelete){
+      props.getContactId(id);
+    }
   };
 
   const getSearchTerm = () => {

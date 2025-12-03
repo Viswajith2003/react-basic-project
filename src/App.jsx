@@ -7,7 +7,6 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import ContactDetail from "./components/contactDetails";
 import api from "./api/contacts";
 import EditContact from "./components/EditContact";
-
 const LOCAL_STORAGE_KEY = "contacts";
 
 function App() {
@@ -48,6 +47,7 @@ function App() {
     //   ...prevContacts,
     //   { id: uuidv4(), ...contact }, //Universally unq identifier  (generate random or unq id string ,used to create uniq id for each contacts)
     // ]);
+  
   };
   const updateContactHandler = async (contact) => {
     try {
@@ -69,8 +69,11 @@ function App() {
     await api.delete(`/contacts/${id}`);
     const newContactList = contacts.filter((contact) => {
       return contact.id !== id;
+      
     });
     setContacts(newContactList);
+
+
   };
 
   const searchHandler = (searchTerm) => {
