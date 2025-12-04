@@ -1,10 +1,10 @@
 import React, { useEffect, useRef, useState } from "react";
-import ContactCard from "./ContactCard";
+import ContactCard from "../components/ContactCard";
 import { Link } from "react-router-dom";
-import ApiFetch from "./apiFetchingPractice";
+import ApiFetch from "../components/apiFetchingPractice";
+import Counter from "../components/counter";
 
 export default function ContactLists(props) {
-  
   // console.log(props);
   const inputEle = useRef("");
   const deleteContactHandler = (id) => {
@@ -22,7 +22,6 @@ export default function ContactLists(props) {
     // console.log(inputEle.current.value)
   };
 
-  
   // fetchApi();
   // const contacts = [
   //   {
@@ -94,6 +93,7 @@ export default function ContactLists(props) {
       </div>
 
       {/* <ApiFetch/> */}
+      {/* <Counter/> */}
     </div>
   );
 }
