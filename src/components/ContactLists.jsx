@@ -1,13 +1,17 @@
-import React, { useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import ContactCard from "./ContactCard";
 import { Link } from "react-router-dom";
+import ApiFetch from "./apiFetchingPractice";
 
 export default function ContactLists(props) {
+  
   // console.log(props);
   const inputEle = useRef("");
   const deleteContactHandler = (id) => {
-    const confirmDelete=window.confirm("Do you want to delete this contact ?")
-    if(confirmDelete){
+    const confirmDelete = window.confirm(
+      "Do you want to delete this contact ?"
+    );
+    if (confirmDelete) {
       props.getContactId(id);
     }
   };
@@ -17,6 +21,9 @@ export default function ContactLists(props) {
 
     // console.log(inputEle.current.value)
   };
+
+  
+  // fetchApi();
   // const contacts = [
   //   {
   //     id: "1",
@@ -85,6 +92,8 @@ export default function ContactLists(props) {
           </div>
         )}
       </div>
+
+      {/* <ApiFetch/> */}
     </div>
   );
 }
